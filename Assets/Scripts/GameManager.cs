@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public bool isMovingPiece = false;
     private bool turnShouldFinish = false;
 
-    public GameObject playerPiece;
     [SerializeField] private float shotStrength = 15.0f;
 
     public List<PlayerController> players;
     public List<Camera> cameras;
+    public List<GameObject> pieces;
 
     private int playerTurn;
 
@@ -85,9 +85,15 @@ public class GameManager : MonoBehaviour
     private void SpawnNewPiece()
     {
         PlayerController currentPlayer = players[playerTurn];
+        GameObject playerPiece = pieces[playerTurn];
         
         GameObject newPiece = Instantiate(playerPiece, currentPlayer.transform.position, playerPiece.transform.rotation);
         currentPiece = newPiece.GetComponent<Rigidbody>();
         hasTakenShot = false;
+    }
+
+    public bool IsCurrentPlayer(PlayerController player)
+    {
+        return player.Equals(players[playerTurn]);
     }
 }

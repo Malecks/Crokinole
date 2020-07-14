@@ -27,37 +27,43 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        bool isCurrentPlayer = gameManagerScript.IsCurrentPlayer(this);
 
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (isCurrentPlayer)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
 
-        if (horizontalInput != 0 && !gameManagerScript.hasTakenShot)
-        {
-            shotRing.transform.Rotate(Vector3.up * -horizontalInput * Time.deltaTime * rotationSpeed);
-            gameManagerScript.StartMovingPiece(gameObject.transform.position);
-        } else
-        {
-            gameManagerScript.StopMovingPiece();
+            if (horizontalInput != 0 && !gameManagerScript.hasTakenShot)
+            {
+                shotRing.transform.Rotate(Vector3.up * -horizontalInput * Time.deltaTime * rotationSpeed);
+                gameManagerScript.StartMovingPiece(gameObject.transform.position);
+            }
+            else
+            {
+                gameManagerScript.StopMovingPiece();
+            }
+
+            if (Input.GetMouseButtonDown(0) && isClickingShotArea && !gameManagerScript.hasTakenShot)
+            {
+                startedClickInShotArea = true;
+            }
+
+            if (Input.GetMouseButton(0) && startedClickInShotArea && !isClickingShotArea)
+            {
+                BeginShot();
+            }
+
+            if (Input.GetMouseButtonUp(0) && startedClickInShotArea)
+            {
+                EndShot(success: true);
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                EndShot(success: false);
+            }
         }
 
-        if (Input.GetMouseButtonDown(0) && isClickingShotArea && !gameManagerScript.hasTakenShot)
-        {
-            startedClickInShotArea = true;
-        }
-
-        if (Input.GetMouseButton(0) && startedClickInShotArea && !isClickingShotArea)
-        {
-            BeginShot();
-        }
-
-        if (Input.GetMouseButtonUp(0) && startedClickInShotArea)
-        {
-            EndShot(success: true);
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            EndShot(success: false);
-        }
     }
 
     private void OnMouseDown()

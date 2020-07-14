@@ -2497,8 +2497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasTakenShot: 0
   isMovingPiece: 0
-  playerPiece: {fileID: 8743596382891248568, guid: 2f1a8202176b64a05a22244bed06e445,
-    type: 3}
   shotStrength: 35
   players:
   - {fileID: 1231118803}
@@ -2506,6 +2504,9 @@ MonoBehaviour:
   cameras:
   - {fileID: 963194227}
   - {fileID: 1104022812}
+  pieces:
+  - {fileID: 8743596382891248568, guid: 2f1a8202176b64a05a22244bed06e445, type: 3}
+  - {fileID: 8743596382891248568, guid: 0273a1b93416447569477db1ef4fba8e, type: 3}
 --- !u!4 &1950085420
 Transform:
   m_ObjectHideFlags: 0
