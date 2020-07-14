@@ -98,8 +98,18 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 mousePos = -Vector3.one;
 
+        Camera currentCam = Camera.main;
+
+        foreach (Camera cam in Camera.allCameras)
+        {
+            if (cam.isActiveAndEnabled)
+            {
+                currentCam = cam;
+            }
+        }
+
         Plane plane = new Plane(new Vector3(0, 0.75f, 0), 0f);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = currentCam.ScreenPointToRay(Input.mousePosition);
 
         if (plane.Raycast(ray, out float distanceToPlane))
         {
@@ -113,8 +123,17 @@ public class PlayerController : MonoBehaviour
     private Vector3 GetMousePos2()
     {
         Vector3 mousePos = -Vector3.one;
+        Camera currentCam = Camera.main;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        foreach (Camera cam in Camera.allCameras)
+        {
+            if (cam.isActiveAndEnabled)
+            {
+                currentCam = cam;
+            }
+        }
+
+        Ray ray = currentCam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))

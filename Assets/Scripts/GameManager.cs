@@ -5,17 +5,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Rigidbody currentPiece;
-    private Vector3 spawnLocation = new Vector3(0, 0.123f, -0.65f);
+    //private Vector3 spawnLocation = new Vector3(0, 0.123f, -0.65f);
 
     public bool hasTakenShot = false;
     public bool isMovingPiece = false;
+    private bool turnShouldFinish = false;
 
     public GameObject playerPiece;
     [SerializeField] private float shotStrength = 15.0f;
 
+    public List<PlayerController> players;
+    public List<Camera> cameras;
+
+    private int playerTurn;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        playerTurn = 0;
         SpawnNewPiece();
     }
 
@@ -24,6 +32,11 @@ public class GameManager : MonoBehaviour
         if(hasTakenShot && currentPiece.IsSleeping() && Input.GetKeyDown(KeyCode.S))
         {
             SpawnNewPiece();
+        }
+
+        if(turnShouldFinish && currentPiece.IsSleeping())
+        {
+            FinishTurn();
         }
     }
 
@@ -47,12 +60,33 @@ public class GameManager : MonoBehaviour
         {
             currentPiece.AddForce(direction * shotStrength, ForceMode.Impulse);
             hasTakenShot = true;
+            turnShouldFinish = true;
+        }
+    }
+
+    public void FinishTurn()
+    {
+        turnShouldFinish = false;
+
+        if (playerTurn < players.Count - 1)
+        {
+            playerTurn++;
+        } else
+        {
+            playerTurn = 0;
+        }
+
+        for (int i = 0; i < cameras.Count - 1; i++)
+        {
+            cameras[i].enabled = i == playerTurn;
         }
     }
 
     private void SpawnNewPiece()
     {
-        GameObject newPiece = Instantiate(playerPiece, spawnLocation, playerPiece.transform.rotation);
+        PlayerController currentPlayer = players[playerTurn];
+        
+        GameObject newPiece = Instantiate(playerPiece, currentPlayer.transform.position, playerPiece.transform.rotation);
         currentPiece = newPiece.GetComponent<Rigidbody>();
         hasTakenShot = false;
     }
