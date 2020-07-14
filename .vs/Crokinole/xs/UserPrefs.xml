@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{F4EF6B2C-9D23-D06D-ABD6-8E2E820C0349}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="101" Column="28" />
-      <File FileName="Assets/Scripts/DragIndicatorScript.cs" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="46" Column="45" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="12" Column="32" />
+      <File FileName="Assets/Scripts/DragIndicatorScript.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

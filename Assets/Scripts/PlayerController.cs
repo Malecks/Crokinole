@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 startPos;
     public Vector3 endPos;
 
+    public GameObject pieces;
+    public Camera playerCamera;
+
     private GameManager gameManagerScript;
     private DragIndicatorScript dragIndicator;
     private GameObject shotRing;

@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Rigidbody currentPiece;
-    //private Vector3 spawnLocation = new Vector3(0, 0.123f, -0.65f);
 
     public bool hasTakenShot = false;
     public bool isMovingPiece = false;
@@ -13,9 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float shotStrength = 15.0f;
 
-    public List<PlayerController> players;
-    public List<Camera> cameras;
-    public List<GameObject> pieces;
+    [SerializeField] private List<PlayerController> players;
 
     private int playerTurn;
 
@@ -23,6 +20,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+           players.Add(player.GetComponent<PlayerController>());
+        }
+
         playerTurn = 0;
         SpawnNewPiece();
     }
@@ -76,16 +78,16 @@ public class GameManager : MonoBehaviour
             playerTurn = 0;
         }
 
-        for (int i = 0; i < cameras.Count - 1; i++)
+        for (int i = 0; i < players.Count - 1; i++)
         {
-            cameras[i].enabled = i == playerTurn;
+            players[i].playerCamera.enabled = i == playerTurn;
         }
     }
 
     private void SpawnNewPiece()
     {
         PlayerController currentPlayer = players[playerTurn];
-        GameObject playerPiece = pieces[playerTurn];
+        GameObject playerPiece = players[playerTurn].pieces;
         
         GameObject newPiece = Instantiate(playerPiece, currentPlayer.transform.position, playerPiece.transform.rotation);
         currentPiece = newPiece.GetComponent<Rigidbody>();
@@ -95,5 +97,19 @@ public class GameManager : MonoBehaviour
     public bool IsCurrentPlayer(PlayerController player)
     {
         return player.Equals(players[playerTurn]);
+    }
+}
+
+public class Player
+{
+    public PlayerController Controller;
+    public Camera Camera;
+    public GameObject Pieces;
+
+    public Player(PlayerController controller, Camera camera, GameObject pieces)
+    {
+        Controller = controller;
+        Camera = camera;
+        Pieces = pieces;
     }
 }
