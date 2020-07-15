@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/PlayerController.cs" Line="12" Column="32" />
-      <File FileName="Assets/Scripts/DragIndicatorScript.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/DragIndicatorScript.cs" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="14" Column="1" />
     </Files>
     <Pads>
@@ -21,7 +21,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="cdfd2a74-ecbb-4772-98a4-e6750db6aea3" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="78c82b09-e6ef-4c77-aeea-a26b2e3cccbb" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

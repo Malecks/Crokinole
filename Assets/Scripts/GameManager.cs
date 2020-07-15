@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
         }
 
         playerTurn = 0;
+
+        EnablePlayerCamera();
         SpawnNewPiece();
     }
 
@@ -78,9 +80,16 @@ public class GameManager : MonoBehaviour
             playerTurn = 0;
         }
 
-        for (int i = 0; i < players.Count - 1; i++)
+        EnablePlayerCamera();
+    }
+
+    private void EnablePlayerCamera()
+    {
+        for (int i = 0; i < players.Count; i++)
         {
             players[i].playerCamera.enabled = i == playerTurn;
+            Debug.Log(i + ": " + "Camera: " + players[i].playerCamera + " " + players[i].playerCamera.isActiveAndEnabled);
+            
         }
     }
 
