@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
         if(turnShouldFinish && currentPiece.IsSleeping())
         {
+
             FinishTurn();
         }
     }
